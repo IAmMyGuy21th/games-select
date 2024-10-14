@@ -1,0 +1,27 @@
+html {
+color: white;
+font-family: "Space Grotesk", sans-serif;
+font-optical-sizing: auto;
+font-weight: 700;
+font-style: normal;
+background-color: #333;
+}
+
+
+.container {
+
+}
+
+input {
+transition: all .3s;
+}
+
+input:hover {
+box-shadow: 0px 10px 10px -3px #ddf8;
+background-color: #fff;
+}
+
+input:active {
+box-shadow: 0px 10px 10px 3px #ddd8 inset;
+background-color: #ccc;
+}
