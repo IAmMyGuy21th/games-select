@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<head>
+<!--
+<script type="text/javascript" src="https://www.authpro.com/auth/HelpcenterV2/?action=pp">
+</script>
+-->
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<!--
+<button onclick="openGame()" style="background-color: #eee; color: #000; border: 10px; border-color: #ddd ; vertical-align: center; font-size: 26px; width:100%; cursor: pointer; border-radius: 100px; border-style: solid;"> Play in Fullscreen </button>
+-->
+<div class="container">
+<h1>This is a navigation textbox.</h1>
+<h2>Type in different passwords to go to the following websites:</h2><h3>Sorry if your Polytrack times got deleted it should be fixed now</h3>
+<h3>Passwords:</h3>
+
+<ol id="orderedL"></ol>
+<br>
+<p style="font-size:10px;">(Hisham is dead, Aisham is the new Hisham)</p>
+
+<input id="inp" style="background-color: #eee; color: #000; border: 10px; border-color: #ddd ; vertical-align: center; font-size: 26px; width:100%; cursor: pointer; border-radius: 100px; border-style: solid;" onkeydown="navigate(event)"></input>
+</div>
+<script>
+let passwords = [
+        'polytrack',
+        'polytrack v2',
+        'karlson',
+        'happy wheels',
+        'kodub.com',
+        'shark game',
+        'hacker typer simulator',
+        'bruno',
+        'aviator',
+        'town',
+        'bounce friday',
+        'whatbeatsrock',
+        'cube',
+        'eagler',
+        '_dev_polytracktestaish',
+        ],
+        opens = ['https://iliill1.github.io/polytrackfix/polytrack/', 'https://geodesicalxx.github.io/',
+        'https://dddatt.github.io/Karlson-3D/afterChristmas.html', 'https://glasses.clienturl.net/uv/service/hvtrs8%2F-tmtclhepkdaae%2Ccmm-',
+'https://https://glasses.clienturl.net//uv/service/hvtrs8%2F-wuw%2Ckmdwb%2Ccmm-', 'https://plirof.github.io/SharkGame-idle/', 'https://xn--ujdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.campeonatosmunicipalesarroyomolinos.org/uv/service/hvtrs8%2F-ppalx%2Ccmm-hcciep%2F!gmoelg_tiengtve','https://bruno-simon.com/#','https://tympanus.net/Tutorials/TheAviator/index.html','https://demos.littleworkshop.fr/infinitown','https://threejs-journey.com/apps/bounce-friday/','https://www.whatbeatsrock.com/','https://cuberealm.io','https://spike172.github.io/eaglercraft','https://iammyguy21th.github.io/polytrack.3/'], 
+        defenitions = ['Goes to PolyTrack by Kodub', 'Goes to Polytrack V2(Newest)', 'Karlson (click fullscreen first)', 'Goes to Happy wheels (Viewer discression advised)',
+'Goes to Kodub.com', 'a game with shrrrks, endless resources, and new and ominus worlds to explore', 'type random keys on your keyboard to simulate hacking someone\'s computer.','Bruno Simon\'s Portfolio','Fly your plane','An Infinite Town','A game by Bruno Simon, a creative french dev','What Beats Rock? A giant sun sized pacman with a powerup, obviously.','Cubes (actually roblo-minceraft)','Eaglercraft (Minecraft 1.8.8)','t'];
+
+
+
+// Do NOT change the code under this line
+
+function openGame(url) {
+	var win = window.open ('about:blank','about:blank', 'width=500,height=500');
+	var iframe = win.document.createElement('iframe');
+        iframe.style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
+	iframe.style.width = "100%";
+	iframe.style.height = "100%";
+	iframe.style.border = "none";
+	iframe.src = url;
+	win.document.body.appendChild(iframe);
+}
+
+function navigate(thing) {
+    let inp = document.getElementById("inp");
+
+    if (thing.key == "Enter") {
+        for (let i = 0; i < opens.length; i++) {
+            if (inp.value.toLowerCase() === passwords[i].toLowerCase()) {
+                openGame(opens[i]);
+            }
+        }
+    }
+}
+
+function addListItems() {
+	let orderedL = document.getElementById("orderedL");
+    let listItemV;
+	for (let item = 0; item < passwords.length; item++) {
+        if (!(passwords[item].startsWith('_dev_') || passwords[item].startsWith('_test_') || passwords[item].startsWith('_hidden_'))) {
+    	listItemV = document.createElement('li');
+        listItemV.innerHTML = '"' + passwords[item] + '"' + ' → ' + defenitions[item];
+    	orderedL.appendChild(listItemV);
+        }
+    }
+}
+
+addListItems();
+</script>
+</center>
