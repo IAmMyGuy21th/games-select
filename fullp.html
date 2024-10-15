@@ -99,7 +99,7 @@ function addListItems() {
 	let orderedL = document.getElementById("orderedL");
     let listItemV;
 	for (let item = 0; item < passwords.length; item++) {
-        if (!(passwords[item].startsWith('_dev_') || passwords[item].startsWith('_test_') || passwords[item].startsWith('_hidden_'))) {
+        if (!(passwords[item].startsWith('_dev_') || passwords[item].startsWith('_test_') || passwords[item].startsWith('_hidden_')) || true) {
     	listItemV = document.createElement('li');
         listItemV.innerHTML = '"' + passwords[item] + '"' + ' → ' + defenitions[item];
     	orderedL.appendChild(listItemV);
