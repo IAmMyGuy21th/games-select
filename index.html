@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <head>
+<span id="ap_welcome"></span>
+<script type="text/javascript">
+  var ap_welcome="Hello, you're logged in as: " + login;
+  ap_welcome+=" [<a href='https://www.authpro.com/auth/HelpcenterV2/?action=logout'>Logout</a>]";
+  if (exp_days!='') { ap_welcome+=" (your account will be expired in " + exp_days + " days)"; }
+  document.getElementById("ap_welcome").innerHTML = ap_welcome;
+</script>	
 <script type="text/javascript" src="https://www.authpro.com/auth/HelpcenterV2/?action=pp">
 </script>
 <link rel="stylesheet" href="style.css">
