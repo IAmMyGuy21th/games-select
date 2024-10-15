@@ -18,6 +18,8 @@
 
 <ol id="orderedL"></ol>
 <br>
+<input type="checkbox" id="w" name="w" class="w"><label for="w">Open in new Window</label>
+<br>
 <p style="font-size:10px;">(Hisham is dead, Aisham is the new Hisham)</p>
 
 <input id="inp" style="background-color: #eee; color: #000; border: 10px; border-color: #ddd ; vertical-align: center; font-size: 26px; width:100%; cursor: pointer; border-radius: 100px; border-style: solid;" onkeydown="navigate(event)"></input>
@@ -51,7 +53,12 @@ let passwords = [
 // Do NOT change the code under this line
 
 function openGame(url) {
-	var win = window.open ('about:blank','about:blank', 'width=500,height=500');
+	let chek = document.getElementById('w').value
+	if (chek) {
+		var win = window.open ('about:blank','about:blank', 'width=500,height=500');
+	} else {
+		var win = window.open ('about:blank','about:blank');
+	}
 	var iframe = win.document.createElement('iframe');
         iframe.style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
 	iframe.style.width = "100%";
