@@ -90,8 +90,12 @@ function navigate(thing) {
 
     if (thing.key == "Enter") {
         for (let i = 0; i < opens.length; i++) {
-            if (inp.value === passwords[i]) {
-                openGame(opens[i]);
+            if (inp.value.toLowerCase() === passwords[i].toLowerCase()) {
+            	if (passwords[i].startsWith('_dev_') || passwords[i].startsWith('_test_') || passwords[i].startsWith('_hidden_')) {
+                let newWin = window.open('/games-select/passwordP.html', 'password', 'width=700,height=700,scrollbars=false')
+                } else {
+                    openGame(opens[i]);
+                }
             }
         }
     }
