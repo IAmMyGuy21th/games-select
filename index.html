@@ -18,7 +18,7 @@
 
 <ol id="orderedL"></ol>
 <br>
-<input type="checkbox" id="w" name="w" class="w"><label for="w">Open in new Window</label>
+<input type="checkbox" id="w" name="w" class="w" onclick="chekb()"><label for="w">Open in new Window</label>
 <br>
 <p style="font-size:10px;">(Hisham is dead, Aisham is the new Hisham)</p>
 
@@ -52,6 +52,10 @@ let passwords = [
 
 // Do NOT change the code under this line
 
+function chekb() {
+	window.open('about:blank')
+}
+	
 function openGame(url) {
 	let chek = document.getElementById('w').value
 	if (chek) {
