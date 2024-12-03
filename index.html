@@ -1,203 +1,121 @@
 <!DOCTYPE html>
-<head>	
-<link rel="stylesheet" href="style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-</head>
-
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prevent Tab Close</title>
+
+    <!-- Linking External CSS File -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Preconnect for Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts Link -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    
     <script>
         // JavaScript to show confirmation before closing or navigating away
         window.onbeforeunload = function(event) {
-            // The confirmation message will appear when trying to close or leave the page
             const message = "Are you sure you want to leave? Any unsaved data will be lost!";
-            // For modern browsers, we set the returnValue property to show the warning
             event.returnValue = message; 
-            // For older browsers that require a return statement
             return message; 
         };
-        
-        // Optional: Keep the page active by disabling right-click or other tricks
-        window.onload = function() {
-            // Disable right-click to prevent opening the context menu
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();  // Disable right-click
-            });
-            
-            // Optionally disable keyboard shortcuts like "Ctrl + W" and "Alt + F4" for closing tabs
-            document.addEventListener('keydown', function(e) {
-                // Prevent "Ctrl + W" or "Cmd + W" on Mac
-                if ((e.ctrlKey || e.metaKey) && e.key === 'w') {
-                    e.preventDefault();
-                }
-                // Prevent "Ctrl + F4" or "Alt + F4"
-                if (e.key === 'F4' || (e.altKey && e.key === 'F4')) {
-                    e.preventDefault();
-                }
-            });
-        };
-    </script>
 
+        // List of passwords, URLs, and definitions
+        let passwords = [
+            'polytrack', 'polytrack v2', 'karlson', 'happy wheels', 'kodub.com',
+            'shark game', 'hacker typer simulator', 'bruno', 'aviator', 'town',
+            'bounce friday', 'whatbeatsrock', 'cube', 'eagler', '_dev_polytracktestaish',
+            'aishams games', 'spike172 games', 'crazy cars', 'drive mad', 'Sketchbook',
+            'slowroads', 'vex8', 'tetris', 'grind', 'robloxtest', 'boxel'
+        ];
 
-<!--
-<button onclick="openGame()" style="background-color: #eee; color: #000; border: 10px; border-color: #ddd ; vertical-align: center; font-size: 26px; width:100%; cursor: pointer; border-radius: 100px; border-style: solid;"> Play in Fullscreen </button>
--->
-<div class="container">
-<h1>This is a navigation textbox.</h1>
-<h2>Type in different passwords to go to the following websites:</h2><h3>Sorry if your Polytrack times got deleted it should be fixed now</h3>
-<h3>Passwords:</h3>
+        let opens = [
+            'https://iliill1.github.io/polytrackfix/polytrack/', 'https://geodesicalxx.github.io/',
+            'https://dddatt.github.io/Karlson-3D/afterChristmas.html', 'https://glasses.clienturl.net/uv/service/hvtrs8%2F-tmtclhepkdaae%2Ccmm-',
+            'https://plirof.github.io/SharkGame-idle/', 'https://xn--ujdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.campeonatosmunicipalesarroyomolinos.org/uv/service/hvtrs8%2F-ppalx%2Ccmm-hcciep%2F!gmoelg_tiengtve',
+            'https://bruno-simon.com/#', 'https://tympanus.net/Tutorials/TheAviator/index.html', 'https://demos.littleworkshop.fr/infinitown',
+            'https://threejs-journey.com/apps/bounce-friday/', 'https://www.whatbeatsrock.com/', 'https://cuberealm.io',
+            'https://iammyguy21th.github.io/eagler/eagler2', 'https://iammyguy21th.github.io/polytrack.3/',
+            'https://iammyguy21th.github.io', 'https://spike172.github.io', 'https://iliill1.github.io/CrazyCars',
+            'https://ubg77.github.io/game131022/drive-mad/', 'https://iammyguy21th.github.io/Sketchbook',
+            'https://iliill1.github.io/slowroads/', 'https://iliill1.github.io/Vex8/', 'https://servetg.com/tetris',
+            'https://iliill1.github.io/grind', 'https://iliill1.github.io/robox', 'https://trinculo54.github.io/Boxel-rebound-hope/Newer/'
+        ];
 
-<ol id="orderedL"></ol>
-<br>
-<input type="checkbox" id="w" name="w" class="w"><label for="w">Open in new Window</label>
-<br>
-<p style="font-size:10px;">(Hisham is dead, Aisham is the new Hisham)</p>
+        let defenitions = [
+            'Goes to PolyTrack by Kodub', 'Goes to Polytrack V2(Newest)', 'Karlson (click fullscreen first)', 'Goes to Happy wheels (Viewer discression advised)',
+            'Goes to Kodub.com', 'A game with sharks, endless resources, and new and ominous worlds to explore', 'Type random keys on your keyboard to simulate hacking someone\'s computer.',
+            'Bruno Simon\'s Portfolio', 'Fly your plane', 'An Infinite Town', 'A game by Bruno Simon, a creative French dev',
+            'What Beats Rock? A giant sun-sized pacman with a powerup, obviously.', 'Cubes (actually roblo-minceraft, only works at home)',
+            'Eaglercraft (Minecraft 1.8.8)', 't', 'Aisham\'s games', 'Tej\'s games', 'Crazy Cars', 'You know the game, you drive madly (or happily you choose)',
+            'It\'s Sketchbook! Drive vehicles, race bots, and explore the world!', 'Slowroads infinite driving zen', 'Vex Platformer 8', 'Tetris JS remake by Servet Gulnaroglu',
+            'GrindCraft (like shark game, but a clicker and also Minecraft© related)', 'Umm, Roblox? (test it out and give us feedback on the member page)',
+            'Boxel Rebound (like js geometry dash, press <strong>`</strong> key to see hacks)'
+        ];
 
-<input id="inp" style="background-color: #eee; color: #000; border: 10px; border-color: #ddd ; vertical-align: center; font-size: 26px; width:100%; cursor: pointer; border-radius: 100px; border-style: solid;" onkeydown="navigate(event)"></input>
-</div>
-<script>
-let passwords = [
-        'polytrack',
-        'polytrack v2',
-        'karlson',
-        'happy wheels',
-        'kodub.com',
-        'shark game',
-        'hacker typer simulator',
-        'bruno',
-        'aviator',
-        'town',
-        'bounce friday',
-        'whatbeatsrock',
-        'cube',
-        'eagler',
-        '_dev_polytracktestaish',
-	'aishams games',
-	'spike172 games',
-	'crazy cars',
-	'drive mad',
-	'Sketchbook',
-	'slowroads',
-	'vex8',
-	'tetris',
-	'grind',
-	'robloxtest',
-	'boxel'
-        ],
-        opens = [
-	'https://iliill1.github.io/polytrackfix/polytrack/',
-	'https://geodesicalxx.github.io/',
-        'https://dddatt.github.io/Karlson-3D/afterChristmas.html', 
-	'https://glasses.clienturl.net/uv/service/hvtrs8%2F-tmtclhepkdaae%2Ccmm-',
-	'https://https://glasses.clienturl.net//uv/service/hvtrs8%2F-wuw%2Ckmdwb%2Ccmm-', 
-	'https://plirof.github.io/SharkGame-idle/', 
-	'https://xn--ujdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.campeonatosmunicipalesarroyomolinos.org/uv/service/hvtrs8%2F-ppalx%2Ccmm-hcciep%2F!gmoelg_tiengtve',
-	'https://bruno-simon.com/#',
-	'https://tympanus.net/Tutorials/TheAviator/index.html',
-	'https://demos.littleworkshop.fr/infinitown',
-	'https://threejs-journey.com/apps/bounce-friday/',
-	'https://www.whatbeatsrock.com/',
-	'https://cuberealm.io',
-	'https://iammyguy21th.github.io/eagler/eagler2',
-	'https://iammyguy21th.github.io/polytrack.3/',
-	'https://iammyguy21th.github.io',
-	'https://spike172.github.io',
-	'https://iliill1.github.io/CrazyCars',
-	'https://ubg77.github.io/game131022/drive-mad/',
-	'https://iammyguy21th.github.io/Sketchbook',
-	'https://iliill1.github.io/slowroads/',
-	'https://iliill1.github.io/Vex8/',
-	'https://servetg.com/tetris',
-	'https://iliill1.github.io/grind',
-	'https://iliill1.github.io/robox',
-	'https://trinculo54.github.io/Boxel-rebound-hope/Newer/'
-	], 
-        defenitions = [
-		'Goes to PolyTrack by Kodub',
-		'Goes to Polytrack V2(Newest)', 
-		'Karlson (click fullscreen first)', 
-		'Goes to Happy wheels (Viewer discression advised)',
-		'Goes to Kodub.com',
-		'a game with shrrrks, endless resources, and new and ominus worlds to explore', 
-		'type random keys on your keyboard to simulate hacking someone\'s computer.',
-		'Bruno Simon\'s Portfolio',
-		'Fly your plane',
-		'An Infinite Town',
-		'A game by Bruno Simon, a creative french dev',
-		'What Beats Rock? A giant sun sized pacman with a powerup, obviously.',
-		'Cubes (actually roblo-minceraft, only works at home)',
-		'Eaglercraft (Minecraft 1.8.8)',
-		't',
-		'Aisham\'s games',
-		'Tej\'s games',
-		'Crazy Cars',
-		'You know the game, you drive madly (or happily you choose)',
-		'It\'s Sketchbook! Drive vehicles, race bots, and explore the world!',
-		'Slowroads infinite driving zen',
-		'Vex Platformer 8',
-		'Tetris JS remake by Servet Gulnaroglu',
-		'GrindCraft (like shark game, but a clicker and also Minecraft© related)',
-		'Umm, Roblox? (test it out and give us feedback on the member page',
-		'Boxel Rebound (like js geometry dash, press <strong>`</strong> key to see hacks)'
-		];
+        // Do NOT change the code under this line
+        function openGame(url) {
+            let chek = document.getElementById('w')
+            if (chek.checked) {
+                var win = window.open ('about:blank','about:blank', 'width=500,height=500');
+            } else {
+                var win = window.open ('about:blank');
+            }
+            var iframe = win.document.createElement('iframe');
+            iframe.style = "position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;";
+            iframe.src = url;
+            win.document.body.appendChild(iframe);
+        }
 
+        function navigate(thing) {
+            let inp = document.getElementById("inp");
 
-
-// Do NOT change the code under this line
-
-function chekb() {
-	window.open('about:blank')
-}
-	
-function openGame(url) {
-	let chek = document.getElementById('w')
-	if (chek.checked) {
-		var win = window.open ('about:blank','about:blank', 'width=500,height=500');
-	} else {
-		var win = window.open ('about:blank');
-	}
-	var iframe = win.document.createElement('iframe');
-        iframe.style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"
-	iframe.style.width = "100%";
-	iframe.style.height = "100%";
-	iframe.style.border = "none";
-	iframe.src = url;
-	win.document.body.appendChild(iframe);
-}
-
-function navigate(thing) {
-    let inp = document.getElementById("inp");
-
-    if (thing.key == "Enter") {
-        for (let i = 0; i < opens.length; i++) {
-            if (inp.value.toLowerCase() === passwords[i].toLowerCase()) {
-            	if (passwords[i].startsWith('_dev_') || passwords[i].startsWith('_test_') || passwords[i].startsWith('_hidden_')) {
-                let newWin = window.open('/games-select/password.html', 'password', 'width=700,height=700,scrollbars=false')
-                } else {
-                    openGame(opens[i]);
+            if (thing.key == "Enter") {
+                for (let i = 0; i < opens.length; i++) {
+                    if (inp.value.toLowerCase() === passwords[i].toLowerCase()) {
+                        if (passwords[i].startsWith('_dev_') || passwords[i].startsWith('_test_') || passwords[i].startsWith('_hidden_')) {
+                            let newWin = window.open('/games-select/password.html', 'password', 'width=700,height=700,scrollbars=false')
+                        } else {
+                            openGame(opens[i]);
+                        }
+                    }
                 }
             }
         }
-    }
-}
 
-function addListItems() {
-	let orderedL = document.getElementById("orderedL");
-    let listItemV;
-	for (let item = 0; item < passwords.length; item++) {
-        if (!(passwords[item].startsWith('_dev_') || passwords[item].startsWith('_test_') || passwords[item].startsWith('_hidden_'))) {
-    	listItemV = document.createElement('li');
-        listItemV.innerHTML = '"' + passwords[item] + '"' + ' → ' + defenitions[item];
-    	orderedL.appendChild(listItemV);
+        function addListItems() {
+            let orderedL = document.getElementById("orderedL");
+            let listItemV;
+            for (let item = 0; item < passwords.length; item++) {
+                if (!(passwords[item].startsWith('_dev_') || passwords[item].startsWith('_test_') || passwords[item].startsWith('_hidden_'))) {
+                    listItemV = document.createElement('li');
+                    listItemV.innerHTML = '"' + passwords[item] + '"' + ' → ' + defenitions[item];
+                    orderedL.appendChild(listItemV);
+                }
+            }
         }
-    }
-}
 
-addListItems();
-</script>
-</center>
+        addListItems();
+    </script>
+</head>
 
+<body>
+    <!-- Content Inside the Container -->
+    <div class="container">
+        <h1>This is a navigation textbox.</h1>
+        <h2>Type in different passwords to go to the following websites:</h2>
+        <h3>Sorry if your Polytrack times got deleted it should be fixed now</h3>
+        <h3>Passwords:</h3>
+        <ol id="orderedL"></ol>
+        <br>
+        <input type="checkbox" id="w" name="w" class="w"><label for="w">Open in new Window</label>
+        <br>
+        <p style="font-size:10px;">(Hisham is dead, Aisham is the new Hisham)</p>
 
+        <input id="inp" style="background-color: #eee; color: #000; border: 10px; border-color: #ddd ; vertical-align: center; font-size: 26px; width:100%; cursor: pointer; border-radius: 100px; border-style: solid;" onkeydown="navigate(event)"></input>
+    </div>
+</body>
+</html>
