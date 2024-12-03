@@ -6,6 +6,42 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 </head>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prevent Tab Close</title>
+    <script>
+        // JavaScript to show confirmation before closing or navigating away
+        window.onbeforeunload = function(event) {
+            // The confirmation message will appear when trying to close or leave the page
+            const message = "Are you sure you want to leave? Any unsaved data will be lost!";
+            // For modern browsers, we set the returnValue property to show the warning
+            event.returnValue = message; 
+            // For older browsers that require a return statement
+            return message; 
+        };
+        
+        // Optional: Keep the page active by disabling right-click or other tricks
+        window.onload = function() {
+            // Disable right-click to prevent opening the context menu
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();  // Disable right-click
+            });
+            
+            // Optionally disable keyboard shortcuts like "Ctrl + W" and "Alt + F4" for closing tabs
+            document.addEventListener('keydown', function(e) {
+                // Prevent "Ctrl + W" or "Cmd + W" on Mac
+                if ((e.ctrlKey || e.metaKey) && e.key === 'w') {
+                    e.preventDefault();
+                }
+                // Prevent "Ctrl + F4" or "Alt + F4"
+                if (e.key === 'F4' || (e.altKey && e.key === 'F4')) {
+                    e.preventDefault();
+                }
+            });
+        };
+    </script>
+
+
 <!--
 <button onclick="openGame()" style="background-color: #eee; color: #000; border: 10px; border-color: #ddd ; vertical-align: center; font-size: 26px; width:100%; cursor: pointer; border-radius: 100px; border-style: solid;"> Play in Fullscreen </button>
 -->
